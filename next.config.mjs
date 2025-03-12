@@ -22,8 +22,8 @@ const nextConfig = {
     parallelServerCompiles: true,
   },
   output: "export",
-  basePath: "/",
-  assetPrefix: "/",
+  basePath: "/cijug-website",
+  assetPrefix: "/cijug-website",
 }
 
 mergeConfig(nextConfig, userConfig)
