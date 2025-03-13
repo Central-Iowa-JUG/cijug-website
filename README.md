@@ -1,6 +1,6 @@
 # CIJUG Website
 
-This repository contains the Central Iowa Java Users Group (CIJUG) [website](cijug.net), built with Next.js and deployed as a static site to GitHub Pages.
+This repository contains the Central Iowa Java Users Group (CIJUG) [website](https://cijug.net), built with Next.js and deployed as a static site to GitHub Pages.
 
 ## Overview
 
