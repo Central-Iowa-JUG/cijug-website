@@ -138,7 +138,7 @@ export default function Component() {
                   {
                     name: "JetBrains",
                     url: "https://www.jetbrains.com/",
-                    logo: "https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png?height=64&width=200",
+                    logo: "/logos/jetbrains.png?height=64&width=200",
                   },
                 ].map((sponsor) => (
                   <Link

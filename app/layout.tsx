@@ -1,7 +1,7 @@
-import type { Metadata } from 'next'
 import './globals.css'
+import {Metadata} from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "CIJUG",
   description: "Central Iowa Java Users Group",
   generator: 'v0.dev',
@@ -12,6 +12,7 @@ export const metadata = {
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }
     ],
   },
+  referrer: "strict-origin",
 };
 
 export default function RootLayout({
@@ -21,7 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+    <head>
+      <meta
+          httpEquiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self';"
+      />
+    </head>
+    <body>{children}</body>
     </html>
   )
 }
