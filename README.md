@@ -45,7 +45,7 @@ This repository contains the Central Iowa Java Users Group (CIJUG) [website](htt
 
 This project is set up to automatically deploy to GitHub Pages whenever you push to the `main` branch. The workflow file is at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). Here is an overview:
 
-1. **Install dependencies** using `npm install --legacy-peer-deps`.
+1. **Install dependencies** using `npm install`.
 2. **Build** the Next.js project via `npm run build`.
 3. **Deploy** the `out` directory to the `gh-pages` branch.
 
