@@ -16,7 +16,7 @@ export default function Component() {
                 <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-cijug-orange to-cijug-blue opacity-75 blur" />
                 <div className="relative bg-black rounded-xl p-4">
                   <Image
-                    src="/cijug-website/logos/cijug.png"
+                    src="/logos/cijug.png"
                     alt="CIJUG Logo"
                     width={300}
                     height={120}
@@ -128,12 +128,12 @@ export default function Component() {
                   {
                     name: "Source Allies",
                     url: "https://www.sourceallies.com/",
-                    logo: "/cijug-website/logos/source-allies.png?height=64&width=200",
+                    logo: "/logos/source-allies.png?height=64&width=200",
                   },
                   {
                     name: "No Fluff Just Stuff",
                     url: "https://nofluffjuststuff.com/",
-                    logo: "/cijug-website/logos/nfjs.png?height=64&width=200",
+                    logo: "/logos/nfjs.png?height=64&width=200",
                   },
                   {
                     name: "JetBrains",
