@@ -89,8 +89,11 @@ function CodeWindow() {
             <span className={kw}>var</span> cijug = <span className={type}>UserGroup</span>.<span className={fn}>of</span>(<span className={str}>&quot;CIJUG&quot;</span>);{"\n"}
             {"\n"}
             cijug.<span className={fn}>meet</span>(<span className={type}>Cadence</span>.<span className={constant}>MONTHLY</span>);{"\n"}
-            cijug.<span className={fn}>talkAbout</span>(<span className={str}>&quot;Java&quot;</span>, <span className={str}>&quot;JVM&quot;</span>,{"\n"}
-            {"    "}<span className={str}>&quot;everything else&quot;</span>);{"\n"}
+            cijug.<span className={fn}>talkAbout</span>({"\n"}
+            {"    "}<span className={str}>&quot;Java&quot;</span>,{"\n"}
+            {"    "}<span className={str}>&quot;JVM&quot;</span>,{"\n"}
+            {"    "}<span className={str}>&quot;everything else&quot;</span>{"\n"}
+            );{"\n"}
             cijug.<span className={fn}>welcome</span>(everyone);{"\n"}
             {"\n"}
             <span className="text-gray-500">{"// you're invited"}</span>{"\n"}
