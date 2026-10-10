@@ -128,17 +128,17 @@ export default function Component() {
                   {
                     name: "Source Allies",
                     url: "https://www.sourceallies.com/",
-                    logo: "/logos/source-allies.png?height=64&width=200",
+                    logo: "/logos/source-allies.png",
                   },
                   {
                     name: "No Fluff Just Stuff",
                     url: "https://nofluffjuststuff.com/",
-                    logo: "/logos/nfjs.png?height=64&width=200",
+                    logo: "/logos/nfjs.png",
                   },
                   {
                     name: "JetBrains",
                     url: "https://www.jetbrains.com/",
-                    logo: "/logos/jetbrains.png?height=64&width=200",
+                    logo: "/logos/jetbrains.png",
                   },
                 ].map((sponsor) => (
                   <Link
