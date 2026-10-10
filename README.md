@@ -78,6 +78,11 @@ Every pull request is also built by [`.github/workflows/ci.yml`](.github/workflo
 
 Merging to `main` deploys the site.
 
+## License
+
+The code is released under the [MIT License](LICENSE). The CIJUG logo and name, and the sponsor logos in
+[`public/logos/`](public/logos), belong to their owners and are not covered by it.
+
 ---
 
 If you have any questions or run into issues, please [open an issue](https://github.com/central-iowa-jug/cijug-website/issues). Thank you for checking out the CIJUG website!
