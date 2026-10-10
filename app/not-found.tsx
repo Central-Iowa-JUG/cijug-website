@@ -35,11 +35,16 @@ export default function NotFound() {
                 {"    "}at{" "}
                 <a
                   href={f.href}
-                  aria-label={f.label}
                   className="text-[#56a8f5] underline decoration-[#56a8f5]/40 underline-offset-4 hover:decoration-[#56a8f5]"
                   {...(f.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 >
                   {f.method}({f.file}:{f.line})
+                  {/* Visible text stays first so voice control users can say what they see (WCAG 2.5.3). */}
+                  <span className="sr-only">
+                    {" "}
+                    ({f.label}
+                    {f.href.startsWith("http") ? ", opens in new tab" : ""})
+                  </span>
                 </a>
                 {"\n"}
               </span>

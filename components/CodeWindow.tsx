@@ -69,6 +69,7 @@ function CodeToken({ token }: { token: Token }) {
 
 export function CodeWindow() {
   // The Run button needs JavaScript, so it only appears once the component has mounted in the browser.
+  // The title bar's min-h-12 reserves its height so nothing shifts when it appears.
   const [mounted, setMounted] = useState(false)
   const [shown, setShown] = useState(0)
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
@@ -97,7 +98,7 @@ export function CodeWindow() {
       </figcaption>
       <div aria-hidden className="absolute -inset-px rounded-2xl bg-linear-to-br from-cijug-orange/60 via-white/10 to-cijug-blue/60" />
       <div className="relative overflow-hidden rounded-2xl bg-[#111214] shadow-2xl shadow-black/60">
-        <div className="flex items-center gap-2 border-b border-white/5 py-2 pr-2 pl-4">
+        <div className="flex min-h-12 items-center gap-2 border-b border-white/5 py-2 pr-2 pl-4">
           <span aria-hidden className="flex items-center gap-2">
             <span className="size-3 rounded-full bg-[#ff5f57]" />
             <span className="size-3 rounded-full bg-[#febc2e]" />
