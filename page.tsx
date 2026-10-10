@@ -84,13 +84,14 @@ function CodeWindow() {
           <span className="size-3 rounded-full bg-[#28c840]" />
           <span className="ml-3 font-mono text-xs text-gray-500">CentralIowa.java</span>
         </div>
-        <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-6 text-gray-300 sm:text-sm sm:leading-7">
+        <pre className="p-4 font-mono text-xs/6 break-words whitespace-pre-wrap text-gray-300 sm:p-5 sm:text-sm/7">
           <code>
-            <span className={kw}>var</span> cijug = <span className={type}>UserGroup</span>.<span className={fn}>of</span>(<span className={str}>&quot;Central Iowa&quot;</span>);{"\n"}
+            <span className={kw}>var</span> cijug = <span className={type}>UserGroup</span>.<span className={fn}>of</span>(<span className={str}>&quot;CIJUG&quot;</span>);{"\n"}
             {"\n"}
             cijug.<span className={fn}>meet</span>(<span className={type}>Cadence</span>.<span className={constant}>MONTHLY</span>);{"\n"}
-            cijug.<span className={fn}>talkAbout</span>(<span className={str}>&quot;Java&quot;</span>, <span className={str}>&quot;JVM&quot;</span>, <span className={str}>&quot;everything else&quot;</span>);{"\n"}
-            cijug.<span className={fn}>welcome</span>(<span className={type}>Developer</span>.<span className={constant}>ALL_LEVELS</span>);{"\n"}
+            cijug.<span className={fn}>talkAbout</span>(<span className={str}>&quot;Java&quot;</span>, <span className={str}>&quot;JVM&quot;</span>,{"\n"}
+            {"    "}<span className={str}>&quot;everything else&quot;</span>);{"\n"}
+            cijug.<span className={fn}>welcome</span>(everyone);{"\n"}
             {"\n"}
             <span className="text-gray-500">{"// you're invited"}</span>{"\n"}
             cijug.<span className={fn}>join</span>(<span className={kw}>you</span>);
@@ -299,7 +300,7 @@ export default function Component() {
             <Logo size={28} className="ring-1 ring-white/10" />
             <p>© {new Date().getFullYear()} Central Iowa Java Users Group</p>
           </div>
-          <Link href={`mailto:${EMAIL}`} className="transition-colors hover:text-white">
+          <Link href={`mailto:${EMAIL}`} className="inline-flex min-h-11 items-center transition-colors hover:text-white">
             {EMAIL}
           </Link>
         </div>
