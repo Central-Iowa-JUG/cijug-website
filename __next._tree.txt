@@ -3,4 +3,4 @@
 :HL["/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/logos/cijug-256.png","image",{"fetchPriority":"high"}]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"-ywcgk15wZw_-54VE1cMI","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"iHq0-p3ZIVawI4krozfBh","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
