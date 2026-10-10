@@ -8,6 +8,11 @@ on:
 permissions:
   contents: write
 
+# One deploy at a time. A newer push waits instead of racing (or cancelling) the one in progress.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest

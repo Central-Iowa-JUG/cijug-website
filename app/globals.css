@@ -1,7 +1,5 @@
 @import 'tailwindcss';
 
-@source '../*.{js,ts,jsx,tsx,mdx}';
-
 @theme {
   --color-cijug-orange: #e56827;
   --color-cijug-blue: #2186b1;
@@ -52,7 +50,9 @@
 }
 
 /* Content below the hero fades and rises in as it scrolls into view. Pure CSS: browsers without
-   scroll-driven animations, and visitors who prefer reduced motion, just see it in place. */
+   scroll-driven animations, and visitors who prefer reduced motion, just see it in place.
+   Screen only: when printing nothing scrolls, so revealed blocks would print blank. The fade completes
+   once a block's first 12rem is on screen, so tall blocks (stacked cards on phones) are not left half-faded. */
 @keyframes reveal {
   from {
     opacity: 0;
@@ -60,12 +60,12 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media screen and (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .reveal {
       animation: reveal linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 100%;
+      animation-range: entry 0% entry 12rem;
     }
   }
 }

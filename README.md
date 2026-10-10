@@ -41,6 +41,20 @@ This repository contains the Central Iowa Java Users Group (CIJUG) [website](htt
 
    This will create your production build and place the statically exported files into the `out` folder.
 
+## Where to change things
+
+| To change... | Edit |
+| --- | --- |
+| Meetup, Sessionize, email and social links | [`lib/site.ts`](lib/site.ts) |
+| Sponsors (name, link, logo) | `sponsors` in [`lib/site.ts`](lib/site.ts), logo file in [`public/logos/`](public/logos) |
+| Page text and sections | [`app/page.tsx`](app/page.tsx) |
+| The Java code in the hero window | `lines` in [`components/CodeWindow.tsx`](components/CodeWindow.tsx) |
+| Page title, description, security header | [`app/layout.tsx`](app/layout.tsx) |
+| Link-preview image (1200x630) | [`app/opengraph-image.png`](app/opengraph-image.png) |
+| Brand colors and fonts | [`app/globals.css`](app/globals.css) |
+| The 404 page | [`app/not-found.tsx`](app/not-found.tsx) |
+| Domain name | [`public/CNAME`](public/CNAME) |
+
 ## Deployment
 
 ### GitHub Pages via GitHub Actions
@@ -53,12 +67,14 @@ This project is set up to automatically deploy to GitHub Pages whenever you push
 
 You can check the status of each deployment under the "Actions" tab in the GitHub repository.
 
+Every pull request is also built by [`.github/workflows/ci.yml`](.github/workflows/ci.yml), so a change that breaks the build is caught before it is merged. Dependabot opens monthly update PRs ([`.github/dependabot.yml`](.github/dependabot.yml)).
+
 ## Contributing
 
 1. Create a branch (`git checkout -b my-change`).
 2. Commit your changes.
 3. Push the branch (`git push -u origin my-change`).
-4. Open a pull request against `main`. A code owner (see [`CODEOWNERS`](CODEOWNERS)) reviews it.
+4. Open a pull request against `main`. The build check must pass, and a code owner (see [`CODEOWNERS`](CODEOWNERS)) reviews it.
 
 Merging to `main` deploys the site.
 
