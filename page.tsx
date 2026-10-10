@@ -3,7 +3,7 @@ import Image from "next/image"
 import { FaMeetup } from "react-icons/fa6"
 import { CodeWindow } from "./components/CodeWindow"
 import { Divider, External, Logo, SectionLabel } from "./components/ui"
-import { EMAIL, MEETUP_URL, SESSIONIZE_URL, SITE_NAME, socials } from "./lib/site"
+import { EMAIL, MEETUP_URL, SESSIONIZE_URL, SITE_NAME, socials, sponsors } from "./lib/site"
 
 // Set in next.config.mjs, so it is the date the site was built, not the date someone views it.
 const BUILD_DATE = process.env.BUILD_DATE ?? new Date().toISOString().slice(0, 10)
@@ -34,12 +34,6 @@ const features = [
     body: "Deep dives into Java, the JVM, and the broader tech ecosystem.",
     accent: "text-white bg-linear-to-br/oklab from-cijug-orange/25 to-cijug-blue/25 ring-white/10",
   },
-]
-
-const sponsors = [
-  { name: "Source Allies", url: "https://www.sourceallies.com/", logo: "/logos/source-allies.png", width: 148, height: 148, size: "h-16" },
-  { name: "No Fluff Just Stuff", url: "https://nofluffjuststuff.com/", logo: "/logos/nfjs.png", width: 281, height: 145, size: "h-16" },
-  { name: "JetBrains", url: "https://www.jetbrains.com/", logo: "/logos/jetbrains.png", width: 400, height: 86, size: "h-10" },
 ]
 
 const primaryButton =
@@ -101,7 +95,7 @@ export default function Component() {
       </header>
 
       <main id="content" tabIndex={-1} className="relative flex-1 outline-none">
-        <section className="container grid grid-cols-1 items-center gap-14 pt-10 pb-24 sm:pt-16 md:pt-24 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16 lg:pt-28 lg:pb-32">
+        <section className="container grid grid-cols-1 items-start gap-14 pt-10 pb-24 sm:pt-16 md:pt-24 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16 lg:pt-28 lg:pb-32">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs text-gray-300">
               <span className="relative flex size-2">
@@ -144,7 +138,7 @@ export default function Component() {
           </div>
 
           <div className="relative w-full max-w-xl">
-            <div className="absolute -top-8 -right-2 z-10 sm:-top-12 sm:-right-6">
+            <div className="pointer-events-none absolute -right-2 -bottom-8 z-10 sm:-right-6 sm:-bottom-12">
               <div aria-hidden className="absolute inset-0 rounded-full bg-linear-to-br from-cijug-orange to-cijug-blue opacity-50 blur-xl" />
               {/* Logo always sets its own display, so the breakpoint switch lives on wrappers. */}
               <span className="relative sm:hidden">
@@ -161,7 +155,7 @@ export default function Component() {
         <Divider color="orange" />
 
         <section id="about" className="container py-24 lg:py-28">
-          <div className="max-w-3xl">
+          <div className="reveal max-w-3xl">
             <SectionLabel>about</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">More than a meetup</h2>
             <p className="mt-5 max-w-2xl text-lg text-pretty text-gray-400">
@@ -169,7 +163,7 @@ export default function Component() {
               real-world insights, and keep learning from each other.
             </p>
           </div>
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
+          <div className="reveal mt-14 grid gap-5 md:grid-cols-3">
             {features.map(({ icon: Icon, title, body, accent }) => (
               <div key={title} className="rounded-2xl border border-white/10 bg-[#0f0f10] p-6 transition-colors hover:border-white/20">
                 <div className={`inline-flex size-11 items-center justify-center rounded-xl ring-1 ${accent}`}>
@@ -183,7 +177,7 @@ export default function Component() {
         </section>
 
         <section id="speak" className="container pb-24 lg:pb-28">
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br/oklab from-cijug-orange/15 via-[#0f0f10] to-cijug-blue/20 p-8 sm:p-12 lg:p-16">
+          <div className="reveal relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br/oklab from-cijug-orange/15 via-[#0f0f10] to-cijug-blue/20 p-8 sm:p-12 lg:p-16">
             <div
               aria-hidden
               className="pointer-events-none absolute -right-24 -bottom-24 size-96 bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-cijug-blue)_30%,transparent),transparent)]"
@@ -211,12 +205,12 @@ export default function Component() {
         <Divider color="blue" />
 
         <section id="sponsors" className="container py-24 lg:py-28">
-          <div className="max-w-2xl">
+          <div className="reveal max-w-2xl">
             <SectionLabel>sponsors</SectionLabel>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Thank you to our sponsors</h2>
             <p className="mt-4 text-lg text-gray-400">They help make our community possible.</p>
           </div>
-          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="reveal mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {sponsors.map((sponsor) => (
               <li key={sponsor.name} className="sm:last:col-span-2 lg:last:col-span-1">
                 <External
@@ -245,47 +239,49 @@ export default function Component() {
         <Divider color="orange" />
 
         <section id="connect" className="container py-24 text-center lg:py-28">
-          <SectionLabel>connect</SectionLabel>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Come to a meetup</h2>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-pretty text-gray-400">
-            Upcoming meetups are posted on Meetup. RSVP there, and follow along on LinkedIn and X.
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-            <External href={MEETUP_URL} className={`${primaryButton} w-full sm:w-auto`}>
-              <FaMeetup aria-hidden className="size-5" />
-              Join us on Meetup
-              <ArrowUpRight aria-hidden className={arrowNudge} />
-            </External>
-            <a
-              href={`mailto:${EMAIL}`}
-              className="inline-flex h-12 items-center gap-2 px-2 font-medium text-gray-300 transition-colors hover:text-white"
+          <div className="reveal">
+            <SectionLabel>connect</SectionLabel>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Come to a meetup</h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-pretty text-gray-400">
+              Upcoming meetups are posted on Meetup. RSVP there, and follow along on LinkedIn and X.
+            </p>
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <External href={MEETUP_URL} className={`${primaryButton} w-full sm:w-auto`}>
+                <FaMeetup aria-hidden className="size-5" />
+                Join us on Meetup
+                <ArrowUpRight aria-hidden className={arrowNudge} />
+              </External>
+              <a
+                href={`mailto:${EMAIL}`}
+                className="inline-flex h-12 items-center gap-2 px-2 font-medium text-gray-300 transition-colors hover:text-white"
+              >
+                <Mail aria-hidden className="size-4" />
+                Email the board
+              </a>
+            </div>
+            <ul className="mt-10 flex flex-wrap justify-center gap-3">
+              {socials
+                .filter((s) => s.url !== MEETUP_URL)
+                .map(({ name, icon: Icon, url }) => (
+                  <li key={name}>
+                    <External
+                      href={url}
+                      className="inline-flex h-12 items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 font-medium transition hover:border-white/25 hover:bg-white/10"
+                    >
+                      <Icon aria-hidden className="size-5" />
+                      {name}
+                    </External>
+                  </li>
+                ))}
+            </ul>
+            <External
+              href="https://dsmtechevents.com/"
+              className="mt-8 inline-flex min-h-11 items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-cijug-blue"
             >
-              <Mail aria-hidden className="size-4" />
-              Email the board
-            </a>
+              Find more Des Moines tech meetups and conferences
+              <ArrowUpRight aria-hidden className="size-4" />
+            </External>
           </div>
-          <ul className="mt-10 flex flex-wrap justify-center gap-3">
-            {socials
-              .filter((s) => s.url !== MEETUP_URL)
-              .map(({ name, icon: Icon, url }) => (
-                <li key={name}>
-                  <External
-                    href={url}
-                    className="inline-flex h-12 items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 font-medium transition hover:border-white/25 hover:bg-white/10"
-                  >
-                    <Icon aria-hidden className="size-5" />
-                    {name}
-                  </External>
-                </li>
-              ))}
-          </ul>
-          <External
-            href="https://dsmtechevents.com/"
-            className="mt-8 inline-flex min-h-11 items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-cijug-blue"
-          >
-            Find more Des Moines tech meetups and conferences
-            <ArrowUpRight aria-hidden className="size-4" />
-          </External>
         </section>
       </main>
 

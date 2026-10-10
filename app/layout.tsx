@@ -1,6 +1,7 @@
 import './globals.css'
 import {Metadata, Viewport} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
+import {DevConsole} from "../components/DevConsole";
 import {EMAIL, MEETUP_URL, SITE_DESCRIPTION, SITE_NAME, SITE_URL, socials} from "../lib/site";
 
 const geistSans = Geist({subsets: ["latin"], variable: "--font-geist-sans"});
@@ -73,6 +74,7 @@ export default function RootLayout({
     </head>
     <body>
       {children}
+      <DevConsole/>
       <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify(organization).replace(/</g, "\\u003c")}}

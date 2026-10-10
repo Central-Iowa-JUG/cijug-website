@@ -50,3 +50,22 @@
     border-radius: 9999px;
   }
 }
+
+/* Content below the hero fades and rises in as it scrolls into view. Pure CSS: browsers without
+   scroll-driven animations, and visitors who prefer reduced motion, just see it in place. */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+    }
+  }
+}
