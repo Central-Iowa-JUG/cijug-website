@@ -2,9 +2,17 @@ import './globals.css'
 import {Metadata} from "next";
 
 export const metadata: Metadata = {
-  title: "CIJUG",
-  description: "Central Iowa Java Users Group",
-  generator: 'v0.dev',
+  metadataBase: new URL("https://www.cijug.net"),
+  title: "Central Iowa Java Users Group (CIJUG)",
+  description: "Monthly meetups in Central Iowa for Java, JVM, and software engineering enthusiasts.",
+  openGraph: {
+    title: "Central Iowa Java Users Group (CIJUG)",
+    description: "Monthly meetups in Central Iowa for Java, JVM, and software engineering enthusiasts.",
+    url: "/",
+    siteName: "CIJUG",
+    images: [{ url: "/logos/cijug.png", alt: "CIJUG logo" }],
+    type: "website",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
