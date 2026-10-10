@@ -101,7 +101,7 @@ export default function Home() {
                 <span className="absolute inline-flex size-full rounded-full bg-cijug-orange opacity-75 motion-safe:animate-ping" />
                 <span className="relative inline-flex size-2 rounded-full bg-cijug-orange" />
               </span>
-              Meeting monthly in Central Iowa
+              Meeting monthly in Des Moines
             </p>
             <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance min-[375px]:text-5xl sm:text-6xl lg:text-7xl">
               Central Iowa{" "}

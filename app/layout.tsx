@@ -53,7 +53,7 @@ const organization = {
   logo: `${SITE_URL}/logos/cijug-512.png`,
   email: EMAIL,
   description: SITE_DESCRIPTION,
-  areaServed: "Central Iowa",
+  areaServed: ["Des Moines, Iowa", "Central Iowa"],
   sameAs: [MEETUP_URL, ...socials.map((s) => s.url)],
 };
 
