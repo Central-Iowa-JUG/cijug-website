@@ -1,12 +1,12 @@
 import { ArrowUpRight, Calendar, Code2, Mail, Mic2, Users } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
-import type { ReactNode } from "react"
-import { FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6"
+import { FaMeetup } from "react-icons/fa6"
+import { CodeWindow } from "./components/CodeWindow"
+import { Divider, External, Logo, SectionLabel } from "./components/ui"
+import { EMAIL, MEETUP_URL, SESSIONIZE_URL, SITE_NAME, socials } from "./lib/site"
 
-const MEETUP_URL = "https://www.meetup.com/central-iowa-java-users-group/"
-const SESSIONIZE_URL = "https://sessionize.com/central-iowa-java-users-group"
-const EMAIL = "boardmembers@cijug.net"
+// Set in next.config.mjs, so it is the date the site was built, not the date someone views it.
+const BUILD_DATE = process.env.BUILD_DATE ?? new Date().toISOString().slice(0, 10)
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -19,7 +19,7 @@ const features = [
   {
     icon: Calendar,
     title: "Regular Meetups",
-    body: "Monthly gatherings with expert presentations and discussions.",
+    body: "Monthly gatherings with presentations and discussions.",
     accent: "text-cijug-orange bg-cijug-orange/10 ring-cijug-orange/20",
   },
   {
@@ -32,87 +32,19 @@ const features = [
     icon: Code2,
     title: "Tech Focus",
     body: "Deep dives into Java, the JVM, and the broader tech ecosystem.",
-    accent: "text-white bg-white/5 ring-white/10",
+    accent: "text-white bg-linear-to-br/oklab from-cijug-orange/25 to-cijug-blue/25 ring-white/10",
   },
 ]
 
 const sponsors = [
   { name: "Source Allies", url: "https://www.sourceallies.com/", logo: "/logos/source-allies.png", width: 148, height: 148, size: "h-16" },
   { name: "No Fluff Just Stuff", url: "https://nofluffjuststuff.com/", logo: "/logos/nfjs.png", width: 281, height: 145, size: "h-16" },
-  { name: "JetBrains", url: "https://www.jetbrains.com/", logo: "/logos/jetbrains.png", width: 1192, height: 256, size: "h-10" },
+  { name: "JetBrains", url: "https://www.jetbrains.com/", logo: "/logos/jetbrains.png", width: 400, height: 86, size: "h-10" },
 ]
 
-const socials = [
-  { name: "LinkedIn", icon: FaLinkedin, url: "https://www.linkedin.com/company/cijug/" },
-  { name: "YouTube", icon: FaYoutube, url: "https://www.youtube.com/@CIJUG" },
-  { name: "X", icon: FaXTwitter, url: "https://twitter.com/cijug" },
-]
-
-function External({ href, className, children }: { href: string; className?: string; children: ReactNode }) {
-  return (
-    <Link href={href} target="_blank" rel="noopener noreferrer" className={className}>
-      {children}
-      <span className="sr-only"> (opens in new tab)</span>
-    </Link>
-  )
-}
-
-function Logo({ size, alt = "", className = "", priority }: { size: number; alt?: string; className?: string; priority?: boolean }) {
-  return (
-    <span className={`relative inline-block shrink-0 overflow-hidden rounded-full bg-black ${className}`} style={{ width: size, height: size }}>
-      <Image src="/logos/cijug.png" alt={alt} width={size} height={size} className="size-full scale-[1.22]" priority={priority} />
-    </span>
-  )
-}
-
-function SectionLabel({ children }: { children: string }) {
-  return (
-    <p aria-hidden className="font-mono text-sm text-cijug-orange">
-      {`// ${children}`}
-    </p>
-  )
-}
-
-function CodeWindow() {
-  const kw = "text-[#cf8e6d]"
-  const type = "text-[#6fafbd]"
-  const str = "text-[#6aab73]"
-  const fn = "text-[#56a8f5]"
-  const constant = "text-[#c77dbb]"
-  return (
-    <figure className="relative">
-      <figcaption className="sr-only">
-        A short Java program: CIJUG meets monthly, talks about Java, the JVM and everything else, and welcomes
-        everyone.
-      </figcaption>
-      <div aria-hidden className="absolute -inset-px rounded-2xl bg-linear-to-br from-cijug-orange/60 via-white/10 to-cijug-blue/60" />
-      <div className="relative overflow-hidden rounded-2xl bg-[#111214] shadow-2xl shadow-black/60">
-        <div aria-hidden className="flex items-center gap-2 border-b border-white/5 px-4 py-3">
-          <span className="size-3 rounded-full bg-[#ff5f57]" />
-          <span className="size-3 rounded-full bg-[#febc2e]" />
-          <span className="size-3 rounded-full bg-[#28c840]" />
-          <span className="ml-3 font-mono text-xs text-gray-400">CentralIowa.java</span>
-        </div>
-        <pre aria-hidden className="p-4 font-mono text-xs/6 break-words whitespace-pre-wrap text-gray-300 sm:p-5 sm:text-sm/7">
-          <code>
-            <span className={kw}>var</span> cijug = <span className={type}>UserGroup</span>.<span className={fn}>of</span>(<span className={str}>&quot;CIJUG&quot;</span>);{"\n"}
-            {"\n"}
-            cijug.<span className={fn}>meet</span>(<span className={type}>Cadence</span>.<span className={constant}>MONTHLY</span>);{"\n"}
-            cijug.<span className={fn}>talkAbout</span>({"\n"}
-            {"    "}<span className={str}>&quot;Java&quot;</span>,{"\n"}
-            {"    "}<span className={str}>&quot;JVM&quot;</span>,{"\n"}
-            {"    "}<span className={str}>&quot;everything else&quot;</span>{"\n"}
-            );{"\n"}
-            cijug.<span className={fn}>welcome</span>(everyone);{"\n"}
-            {"\n"}
-            <span className="text-gray-400">{"// you're invited"}</span>{"\n"}
-            cijug.<span className={fn}>join</span>(<span className={kw}>you</span>);
-          </code>
-        </pre>
-      </div>
-    </figure>
-  )
-}
+const primaryButton =
+  "group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-transparent bg-cijug-orange px-6 font-semibold text-black shadow-lg shadow-cijug-orange/25 transition hover:bg-[#f07a3c] motion-safe:hover:-translate-y-0.5"
+const arrowNudge = "size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
 
 export default function Component() {
   return (
@@ -123,22 +55,27 @@ export default function Component() {
       >
         Skip to content
       </a>
-      {/* Backdrop: a faint grid that fades out, plus two soft brand-colored glows */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[900px] bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-size-[3.5rem_3.5rem] mask-[radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)]" />
-      <div aria-hidden className="pointer-events-none absolute -top-40 left-[-10%] size-[640px] rounded-full bg-cijug-orange/15 blur-[140px]" />
-      <div aria-hidden className="pointer-events-none absolute -top-20 right-[-10%] size-[640px] rounded-full bg-cijug-blue/20 blur-[140px]" />
 
-      <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0a0a0a]/70 backdrop-blur-lg">
+      {/* Backdrop: a faint grid that fades out, plus two soft brand-colored glows. Capped at 1600px so the
+          glows stay near the content on very wide screens. Radial gradients instead of blur filters keep
+          scrolling cheap on low-end phones. */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 mx-auto h-[900px] max-w-[1600px]">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-size-[3.5rem_3.5rem] mask-[radial-gradient(ellipse_70%_60%_at_50%_0%,#000_40%,transparent_100%)]" />
+        <div className="absolute -top-40 -left-40 size-[420px] bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-cijug-orange)_22%,transparent),transparent)] sm:size-[900px]" />
+        <div className="absolute -top-20 -right-40 size-[420px] bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-cijug-blue)_28%,transparent),transparent)] sm:size-[900px]" />
+      </div>
+
+      <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0a0a0a]/75 backdrop-blur-md md:backdrop-blur-lg">
         <div className="container flex h-16 items-center justify-between gap-6">
-          <Link href="#top" className="flex h-11 items-center gap-3">
+          <a href="#top" className="flex h-11 items-center gap-3">
             <Logo size={36} className="ring-1 ring-white/15" priority />
             <span className="font-mono text-sm font-semibold tracking-wider">CIJUG</span>
-          </Link>
+          </a>
           <nav aria-label="Sections" className="hidden items-center gap-6 text-sm text-gray-400 md:flex">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="-mx-1 inline-flex h-11 items-center px-1 transition-colors hover:text-white">
+              <a key={link.href} href={link.href} className="-mx-1 inline-flex h-11 items-center px-1 transition-colors hover:text-white">
                 {link.label}
-              </Link>
+              </a>
             ))}
           </nav>
           <External
@@ -152,19 +89,19 @@ export default function Component() {
         </div>
         <nav aria-label="Sections (mobile)" className="container -mt-1 grid grid-cols-4 gap-1.5 pb-2 md:hidden">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
               className="inline-flex h-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[13px] text-gray-300 transition-colors hover:text-white"
             >
               {link.label}
-            </Link>
+            </a>
           ))}
         </nav>
       </header>
 
       <main id="content" tabIndex={-1} className="relative flex-1 outline-none">
-        <section className="container grid items-center gap-14 pt-10 pb-24 sm:pt-16 md:pt-24 grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16 lg:pt-28 lg:pb-32">
+        <section className="container grid grid-cols-1 items-center gap-14 pt-10 pb-24 sm:pt-16 md:pt-24 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16 lg:pt-28 lg:pb-32">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs text-gray-300">
               <span className="relative flex size-2">
@@ -175,7 +112,9 @@ export default function Component() {
             </p>
             <h1 className="mt-6 text-4xl font-semibold tracking-tight text-balance min-[375px]:text-5xl sm:text-6xl lg:text-7xl">
               Central Iowa{" "}
-              <span className="bg-linear-to-r from-cijug-orange via-[#f0a35e] to-cijug-blue bg-clip-text text-transparent forced-colors:text-[CanvasText]">Java</span>{" "}
+              <span className="bg-linear-to-r/oklab from-cijug-orange to-cijug-blue bg-clip-text text-transparent forced-colors:text-[CanvasText]">
+                Java
+              </span>{" "}
               Users Group
             </h1>
             <p className="mt-5 max-w-xl text-base text-pretty text-gray-400 sm:mt-6 sm:text-xl/8">
@@ -183,12 +122,9 @@ export default function Component() {
               community is here to help you connect, learn, and thrive.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-              <External
-                href={MEETUP_URL}
-                className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-transparent bg-cijug-orange px-6 font-semibold text-black shadow-lg shadow-cijug-orange/25 transition hover:bg-[#f07a3c] motion-safe:hover:-translate-y-0.5"
-              >
+              <External href={MEETUP_URL} className={primaryButton}>
                 Join Our Meetup
-                <ArrowUpRight aria-hidden className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight aria-hidden className={arrowNudge} />
               </External>
               <External
                 href={SESSIONIZE_URL}
@@ -197,51 +133,61 @@ export default function Component() {
                 Submit a Talk
                 <Mic2 aria-hidden className="size-4" />
               </External>
-              <Link href={`mailto:${EMAIL}`} className="inline-flex h-12 items-center gap-2 self-center px-2 text-sm font-medium text-gray-400 transition-colors hover:text-white sm:self-auto">
+              <a
+                href={`mailto:${EMAIL}`}
+                className="inline-flex h-12 items-center gap-2 self-center px-2 text-sm font-medium text-gray-400 transition-colors hover:text-white sm:self-auto"
+              >
                 <Mail aria-hidden className="size-4" />
                 Contact us
-              </Link>
+              </a>
             </div>
           </div>
 
           <div className="relative w-full max-w-xl">
             <div className="absolute -top-8 -right-2 z-10 sm:-top-12 sm:-right-6">
               <div aria-hidden className="absolute inset-0 rounded-full bg-linear-to-br from-cijug-orange to-cijug-blue opacity-50 blur-xl" />
-              <Logo size={64} className="ring-4 ring-[#0a0a0a] sm:hidden" />
-              <Logo size={104} className="hidden ring-4 ring-[#0a0a0a] sm:inline-block" priority />
+              {/* Logo always sets its own display, so the breakpoint switch lives on wrappers. */}
+              <span className="relative sm:hidden">
+                <Logo size={64} className="ring-4 ring-[#0a0a0a]" />
+              </span>
+              <span className="relative hidden sm:inline">
+                <Logo size={104} className="ring-4 ring-[#0a0a0a]" />
+              </span>
             </div>
             <CodeWindow />
           </div>
         </section>
 
-        <section id="about" className="border-t border-white/5 bg-white/[0.015]">
-          <div className="container py-24 lg:py-28">
-            <div className="max-w-3xl">
-              <SectionLabel>about</SectionLabel>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">More than a meetup</h2>
-              <p className="mt-5 text-lg text-pretty text-gray-400">
-                CIJUG is a thriving network of Java and software engineering enthusiasts. We explore new technologies,
-                share real-world insights, and support continuous learning. Whether you&apos;re just starting or an
-                expert in the field, CIJUG is the place to connect, grow, and share your passion.
-              </p>
-            </div>
-            <div className="mt-14 grid gap-5 md:grid-cols-3">
-              {features.map(({ icon: Icon, title, body, accent }) => (
-                <div key={title} className="rounded-2xl border border-white/10 bg-[#0f0f10] p-6 transition-colors hover:border-white/20">
-                  <div className={`inline-flex size-11 items-center justify-center rounded-xl ring-1 ${accent}`}>
-                    <Icon aria-hidden className="size-5" />
-                  </div>
-                  <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-                  <p className="mt-2 text-gray-400">{body}</p>
+        <Divider color="orange" />
+
+        <section id="about" className="container py-24 lg:py-28">
+          <div className="max-w-3xl">
+            <SectionLabel>about</SectionLabel>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">More than a meetup</h2>
+            <p className="mt-5 max-w-2xl text-lg text-pretty text-gray-400">
+              CIJUG brings together Java and software engineering enthusiasts. We explore new technologies, share
+              real-world insights, and keep learning from each other.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
+            {features.map(({ icon: Icon, title, body, accent }) => (
+              <div key={title} className="rounded-2xl border border-white/10 bg-[#0f0f10] p-6 transition-colors hover:border-white/20">
+                <div className={`inline-flex size-11 items-center justify-center rounded-xl ring-1 ${accent}`}>
+                  <Icon aria-hidden className="size-5" />
                 </div>
-              ))}
-            </div>
+                <h3 className="mt-5 text-lg font-semibold">{title}</h3>
+                <p className="mt-2 text-gray-400">{body}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section id="speak" className="container py-24 lg:py-28">
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-cijug-orange/15 via-[#0f0f10] to-cijug-blue/20 p-8 sm:p-12 lg:p-16">
-            <div aria-hidden className="pointer-events-none absolute -right-24 -bottom-24 size-80 rounded-full bg-cijug-blue/25 blur-3xl" />
+        <section id="speak" className="container pb-24 lg:pb-28">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br/oklab from-cijug-orange/15 via-[#0f0f10] to-cijug-blue/20 p-8 sm:p-12 lg:p-16">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-24 -bottom-24 size-96 bg-[radial-gradient(closest-side,color-mix(in_oklab,var(--color-cijug-blue)_30%,transparent),transparent)]"
+            />
             <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_auto]">
               <div className="max-w-2xl">
                 <SectionLabel>speak</SectionLabel>
@@ -256,53 +202,72 @@ export default function Component() {
                 className="group inline-flex h-12 items-center justify-center gap-2 justify-self-start rounded-full border border-transparent bg-white px-6 font-semibold text-black transition hover:bg-cijug-blue lg:justify-self-end"
               >
                 Submit a Talk
-                <ArrowUpRight aria-hidden className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight aria-hidden className={arrowNudge} />
               </External>
             </div>
           </div>
         </section>
 
-        <section id="sponsors" className="border-t border-white/5">
-          <div className="container py-24 lg:py-28">
-            <div className="mx-auto max-w-2xl text-center">
-              <SectionLabel>sponsors</SectionLabel>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Thank you to our sponsors</h2>
-              <p className="mt-4 text-lg text-gray-400">They help make our community possible.</p>
-            </div>
-            <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {sponsors.map((sponsor) => (
-                <li key={sponsor.name} className="sm:last:col-span-2 lg:last:col-span-1">
-                  <External
-                    href={sponsor.url}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0f0f10] transition hover:border-white/25 motion-safe:hover:-translate-y-1"
-                  >
-                    <div className="m-3 flex h-28 items-center justify-center rounded-xl bg-white/95 px-6 sm:h-32 lg:px-10">
-                      <Image
-                        src={sponsor.logo}
-                        alt=""
-                        width={sponsor.width}
-                        height={sponsor.height}
-                        className={`${sponsor.size} w-auto max-w-full object-contain transition-transform motion-safe:group-hover:scale-105`}
-                      />
-                    </div>
-                    <div className="flex items-center justify-between px-5 pt-1 pb-4">
-                      <span className="font-semibold">{sponsor.name}</span>
-                      <ArrowUpRight aria-hidden className="size-4 text-gray-500 transition-colors group-hover:text-white" />
-                    </div>
-                  </External>
-                </li>
-              ))}
-            </ul>
+        <Divider color="blue" />
+
+        <section id="sponsors" className="container py-24 lg:py-28">
+          <div className="max-w-2xl">
+            <SectionLabel>sponsors</SectionLabel>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Thank you to our sponsors</h2>
+            <p className="mt-4 text-lg text-gray-400">They help make our community possible.</p>
           </div>
+          <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {sponsors.map((sponsor) => (
+              <li key={sponsor.name} className="sm:last:col-span-2 lg:last:col-span-1">
+                <External
+                  href={sponsor.url}
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0f0f10] transition hover:border-white/25 motion-safe:hover:-translate-y-1"
+                >
+                  <div className="m-3 flex h-28 items-center justify-center rounded-xl bg-white/95 px-6 sm:h-32 lg:px-10">
+                    <Image
+                      src={sponsor.logo}
+                      alt=""
+                      width={sponsor.width}
+                      height={sponsor.height}
+                      className={`${sponsor.size} w-auto max-w-full object-contain transition-transform motion-safe:group-hover:scale-105`}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between px-5 pt-1 pb-4">
+                    <span className="font-semibold">{sponsor.name}</span>
+                    <ArrowUpRight aria-hidden className="size-4 text-gray-400 transition-colors group-hover:text-white" />
+                  </div>
+                </External>
+              </li>
+            ))}
+          </ul>
         </section>
 
-        <section id="connect" className="border-t border-white/5 bg-white/[0.015]">
-          <div className="container py-24 text-center lg:py-28">
-            <SectionLabel>connect</SectionLabel>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Stay in the loop</h2>
-            <p className="mx-auto mt-4 max-w-xl text-lg text-gray-400">Follow us for our latest events and discussions.</p>
-            <ul className="mt-10 flex flex-wrap justify-center gap-3">
-              {socials.map(({ name, icon: Icon, url }) => (
+        <Divider color="orange" />
+
+        <section id="connect" className="container py-24 text-center lg:py-28">
+          <SectionLabel>connect</SectionLabel>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Come to a meetup</h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-pretty text-gray-400">
+            Upcoming meetups are posted on Meetup. RSVP there, and follow along on LinkedIn and X.
+          </p>
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+            <External href={MEETUP_URL} className={`${primaryButton} w-full sm:w-auto`}>
+              <FaMeetup aria-hidden className="size-5" />
+              Join us on Meetup
+              <ArrowUpRight aria-hidden className={arrowNudge} />
+            </External>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="inline-flex h-12 items-center gap-2 px-2 font-medium text-gray-300 transition-colors hover:text-white"
+            >
+              <Mail aria-hidden className="size-4" />
+              Email the board
+            </a>
+          </div>
+          <ul className="mt-10 flex flex-wrap justify-center gap-3">
+            {socials
+              .filter((s) => s.url !== MEETUP_URL)
+              .map(({ name, icon: Icon, url }) => (
                 <li key={name}>
                   <External
                     href={url}
@@ -313,15 +278,14 @@ export default function Component() {
                   </External>
                 </li>
               ))}
-            </ul>
-            <External
-              href="https://dsmtechevents.com/"
-              className="mt-8 inline-flex min-h-11 items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-cijug-blue"
-            >
-              Find more Des Moines tech meetups and conferences
-              <ArrowUpRight aria-hidden className="size-4" />
-            </External>
-          </div>
+          </ul>
+          <External
+            href="https://dsmtechevents.com/"
+            className="mt-8 inline-flex min-h-11 items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-cijug-blue"
+          >
+            Find more Des Moines tech meetups and conferences
+            <ArrowUpRight aria-hidden className="size-4" />
+          </External>
         </section>
       </main>
 
@@ -329,11 +293,16 @@ export default function Component() {
         <div className="container flex flex-col items-center justify-between gap-4 py-8 text-sm text-gray-400 sm:flex-row">
           <div className="flex items-center gap-3">
             <Logo size={28} className="ring-1 ring-white/10" />
-            <p>© {new Date().getFullYear()} Central Iowa Java Users Group</p>
+            <p>
+              © {BUILD_DATE.slice(0, 4)} {SITE_NAME} ·{" "}
+              <span className="font-mono text-xs">
+                updated <time dateTime={BUILD_DATE}>{BUILD_DATE}</time>
+              </span>
+            </p>
           </div>
-          <Link href={`mailto:${EMAIL}`} className="inline-flex min-h-11 items-center transition-colors hover:text-white">
+          <a href={`mailto:${EMAIL}`} className="inline-flex min-h-11 items-center transition-colors hover:text-white">
             {EMAIL}
-          </Link>
+          </a>
         </div>
       </footer>
     </div>

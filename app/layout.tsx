@@ -1,6 +1,7 @@
 import './globals.css'
 import {Metadata, Viewport} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
+import {EMAIL, MEETUP_URL, SITE_DESCRIPTION, SITE_NAME, SITE_URL, socials} from "../lib/site";
 
 const geistSans = Geist({subsets: ["latin"], variable: "--font-geist-sans"});
 const geistMono = Geist_Mono({subsets: ["latin"], variable: "--font-geist-mono"});
@@ -11,16 +12,26 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.cijug.net"),
-  title: "Central Iowa Java Users Group (CIJUG)",
-  description: "Monthly meetups in Central Iowa for Java, JVM, and software engineering enthusiasts.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} (CIJUG)`,
+    template: "%s | CIJUG",
+  },
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
+  // The share image is app/opengraph-image.png (1200x630), picked up by file convention.
   openGraph: {
-    title: "Central Iowa Java Users Group (CIJUG)",
-    description: "Monthly meetups in Central Iowa for Java, JVM, and software engineering enthusiasts.",
+    title: `${SITE_NAME} (CIJUG)`,
+    description: SITE_DESCRIPTION,
     url: "/",
     siteName: "CIJUG",
-    images: [{ url: "/logos/cijug.png", alt: "CIJUG logo" }],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@cijug",
   },
   icons: {
     icon: [
@@ -28,8 +39,23 @@ export const metadata: Metadata = {
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }
     ],
+    apple: "/apple-icon.png",
   },
   referrer: "strict-origin",
+};
+
+// Structured data for search engines, built only from facts the site already states.
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE_NAME,
+  alternateName: "CIJUG",
+  url: SITE_URL,
+  logo: `${SITE_URL}/logos/cijug-512.png`,
+  email: EMAIL,
+  description: SITE_DESCRIPTION,
+  areaServed: "Central Iowa",
+  sameAs: [MEETUP_URL, ...socials.filter((s) => s.url !== MEETUP_URL).map((s) => s.url)],
 };
 
 export default function RootLayout({
@@ -45,7 +71,13 @@ export default function RootLayout({
           content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';"
       />
     </head>
-    <body>{children}</body>
+    <body>
+      {children}
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(organization).replace(/</g, "\\u003c")}}
+      />
+    </body>
     </html>
   )
 }
