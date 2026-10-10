@@ -1,6 +1,6 @@
 import { ArrowUpRight, Calendar, Code2, Mail, Mic2, Users } from "lucide-react"
-import { FaMeetup } from "react-icons/fa6"
 import { CodeWindow } from "../components/CodeWindow"
+import { MeetupIcon } from "../components/icons"
 import { Divider, External, Logo, SectionLabel } from "../components/ui"
 import { EMAIL, MEETUP_URL, SESSIONIZE_URL, SITE_NAME, socials, sponsors } from "../lib/site"
 
@@ -248,7 +248,7 @@ export default function Home() {
             </p>
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <External href={MEETUP_URL} className={`${primaryButton} w-full sm:w-auto`}>
-                <FaMeetup aria-hidden className="size-5" />
+                <MeetupIcon aria-hidden className="size-5" />
                 Join us on Meetup
                 <ArrowUpRight aria-hidden className={arrowNudge} />
               </External>
