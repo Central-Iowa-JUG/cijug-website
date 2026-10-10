@@ -5,15 +5,15 @@ import { FaXTwitter, FaLinkedin, FaYoutube } from "react-icons/fa6"
 
 export default function Component() {
   return (
-    <div className="flex flex-col min-h-[100dvh] bg-[#0A0A0A] text-white">
-      <div className="fixed inset-0 bg-[linear-gradient(to_right,#E5682722,transparent_1px),linear-gradient(to_bottom,#2186B122,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+    <div className="flex flex-col min-h-dvh bg-[#0A0A0A] text-white">
+      <div className="fixed inset-0 bg-[linear-gradient(to_right,#E5682722,transparent_1px),linear-gradient(to_bottom,#2186B122,transparent_1px)] bg-size-[4rem_4rem] pointer-events-none" />
       <div className="fixed inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,#2186B108,transparent),radial-gradient(circle_800px_at_0%_300px,#E5682708,transparent)] pointer-events-none" />
       <main className="relative flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center gap-8 text-center">
               <div className="relative">
-                <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-cijug-orange to-cijug-blue opacity-75 blur" />
+                <div className="absolute -inset-1 rounded-xl bg-linear-to-r from-cijug-orange to-cijug-blue opacity-75 blur-sm" />
                 <div className="relative bg-black rounded-xl p-4">
                   <Image
                     src="/logos/cijug.png"
@@ -39,7 +39,7 @@ export default function Component() {
                   href="https://www.meetup.com/central-iowa-java-users-group/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-cijug-orange/90 px-8 text-sm font-medium text-white shadow-lg shadow-cijug-orange/20 backdrop-blur-sm transition-all hover:bg-cijug-orange hover:scale-105"
+                  className="inline-flex h-10 items-center justify-center rounded-md bg-cijug-orange/90 px-8 text-sm font-medium text-white shadow-lg shadow-cijug-orange/20 backdrop-blur-xs transition-all hover:bg-cijug-orange hover:scale-105"
                 >
                   Join Our Meetup
                   <ExternalLink className="ml-2 h-4 w-4" />
@@ -48,14 +48,14 @@ export default function Component() {
                   href="https://sessionize.com/central-iowa-java-users-group"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-cijug-blue/90 px-8 text-sm font-medium text-white shadow-lg shadow-cijug-blue/20 backdrop-blur-sm transition-all hover:bg-cijug-blue hover:scale-105"
+                  className="inline-flex h-10 items-center justify-center rounded-md bg-cijug-blue/90 px-8 text-sm font-medium text-white shadow-lg shadow-cijug-blue/20 backdrop-blur-xs transition-all hover:bg-cijug-blue hover:scale-105"
                 >
                   Submit a Talk
                   <Mic2 className="ml-2 h-4 w-4" />
                 </Link>
                 <Link
                   href="mailto:boardmembers@cijug.net"
-                  className="inline-flex h-10 items-center justify-center rounded-md border border-white/10 bg-white/5 px-8 text-sm font-medium backdrop-blur-sm transition-all hover:bg-white/10 hover:scale-105"
+                  className="inline-flex h-10 items-center justify-center rounded-md border border-white/10 bg-white/5 px-8 text-sm font-medium backdrop-blur-xs transition-all hover:bg-white/10 hover:scale-105"
                 >
                   Contact Us
                   <Mail className="ml-2 h-4 w-4" />
@@ -68,7 +68,7 @@ export default function Component() {
           <div className="container px-4 md:px-6">
             <div className="grid gap-10 px-10 md:gap-16 lg:grid-cols-2">
               <div className="relative space-y-4">
-                <div className="absolute -inset-4 rounded-xl bg-gradient-to-r from-cijug-blue to-cijug-orange opacity-10 blur-xl" />
+                <div className="absolute -inset-4 rounded-xl bg-linear-to-r from-cijug-blue to-cijug-orange opacity-10 blur-xl" />
                 <div className="relative">
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">About CIJUG</h2>
                   <p className="mt-4 text-gray-300 md:text-xl">
@@ -81,7 +81,7 @@ export default function Component() {
               </div>
               <div className="grid gap-4">
                 <div className="group relative">
-                  <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-cijug-orange to-cijug-orange/50 opacity-50 blur transition-all group-hover:opacity-75" />
+                  <div className="absolute -inset-0.5 rounded-lg bg-linear-to-r from-cijug-orange to-cijug-orange/50 opacity-50 blur-sm transition-all group-hover:opacity-75" />
                   <div className="relative flex items-start gap-4 rounded-lg border border-white/10 bg-black p-4">
                     <Calendar className="h-6 w-6 mt-1 text-cijug-orange" />
                     <div>
@@ -91,7 +91,7 @@ export default function Component() {
                   </div>
                 </div>
                 <div className="group relative">
-                  <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-cijug-blue to-cijug-blue/50 opacity-50 blur transition-all group-hover:opacity-75" />
+                  <div className="absolute -inset-0.5 rounded-lg bg-linear-to-r from-cijug-blue to-cijug-blue/50 opacity-50 blur-sm transition-all group-hover:opacity-75" />
                   <div className="relative flex items-start gap-4 rounded-lg border border-white/10 bg-black p-4">
                     <Users className="h-6 w-6 mt-1 text-cijug-blue" />
                     <div>
@@ -101,7 +101,7 @@ export default function Component() {
                   </div>
                 </div>
                 <div className="group relative">
-                  <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-cijug-orange to-cijug-blue opacity-50 blur transition-all group-hover:opacity-75" />
+                  <div className="absolute -inset-0.5 rounded-lg bg-linear-to-r from-cijug-orange to-cijug-blue opacity-50 blur-sm transition-all group-hover:opacity-75" />
                   <div className="relative flex items-start gap-4 rounded-lg border border-white/10 bg-black p-4">
                     <Code2 className="h-6 w-6 mt-1 text-white" />
                     <div>
@@ -148,8 +148,8 @@ export default function Component() {
                     rel="noopener noreferrer"
                     className="group relative"
                   >
-                    <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-cijug-orange to-cijug-blue opacity-50 blur transition-all group-hover:opacity-75" />
-                    <div className="relative flex flex-col items-center gap-4 rounded-lg border border-white/10 bg-gradient-to-r from-cijug-orange/10 to-cijug-blue/10 backdrop-blur-sm p-8 transition-all group-hover:scale-[1.01]">
+                    <div className="absolute -inset-0.5 rounded-lg bg-linear-to-r from-cijug-orange to-cijug-blue opacity-50 blur-sm transition-all group-hover:opacity-75" />
+                    <div className="relative flex flex-col items-center gap-4 rounded-lg border border-white/10 bg-linear-to-r from-cijug-orange/10 to-cijug-blue/10 backdrop-blur-xs p-8 transition-all group-hover:scale-[1.01]">
                       <div className="h-16 flex items-center">
                         <Image
                           src={`${sponsor.logo}`}
@@ -207,7 +207,7 @@ export default function Component() {
                   >
                     <div className="relative flex items-center justify-center">
                       {/* Outer ring with gradient */}
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cijug-orange to-cijug-blue opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                      <div className="absolute inset-0 rounded-full bg-linear-to-r from-cijug-orange to-cijug-blue opacity-0 group-hover:opacity-100 transition-all duration-300" />
                       {/* Inner container */}
                       <div className="relative flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-black transition-all duration-300 group-hover:scale-110">
                         {/* Icon */}
