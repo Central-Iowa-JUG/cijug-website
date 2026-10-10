@@ -25,6 +25,12 @@
   html {
     background-color: #0a0a0a;
     color-scheme: dark;
+    /* Keep anchored sections and focused elements clear of the sticky header
+       (two rows on phones, one from md up). */
+    scroll-padding-top: 7.5rem;
+    @media (width >= 48rem) {
+      scroll-padding-top: 4.75rem;
+    }
     @media (prefers-reduced-motion: no-preference) {
       scroll-behavior: smooth;
     }
