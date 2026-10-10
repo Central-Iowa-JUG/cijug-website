@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,80774,t=>{"use strict";var e=t.i(43476),n=t.i(71645);t.s(["MissingPath",0,function(){let[t,i]=(0,n.useState)("<unknown>");return(0,n.useEffect)(()=>i(window.location.pathname),[]),(0,e.jsx)(e.Fragment,{children:t})}])}]);
