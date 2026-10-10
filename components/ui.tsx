@@ -1,4 +1,3 @@
-import Image from "next/image"
 import type { ReactNode } from "react"
 
 export function External({ href, className, children }: { href: string; className?: string; children: ReactNode }) {
@@ -11,10 +10,19 @@ export function External({ href, className, children }: { href: string; classNam
 }
 
 // cijug-256.png is pre-cropped close to the logo's black circle; the black frame fills its transparent corners.
-export function Logo({ size, alt = "", className = "", priority }: { size: number; alt?: string; className?: string; priority?: boolean }) {
+export function Logo({ size, className = "", priority }: { size: number; className?: string; priority?: boolean }) {
   return (
     <span className={`relative inline-block shrink-0 overflow-hidden rounded-full bg-black ${className}`} style={{ width: size, height: size }}>
-      <Image src="/logos/cijug-256.png" alt={alt} width={size} height={size} className="size-full" priority={priority} />
+      <img
+        src="/logos/cijug-256.png"
+        alt=""
+        width={size}
+        height={size}
+        className="size-full"
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : undefined}
+        decoding="async"
+      />
     </span>
   )
 }
@@ -27,7 +35,7 @@ export function SectionLabel({ children }: { children: string }) {
   )
 }
 
-export function Divider({ color = "orange" }: { color?: "orange" | "blue" }) {
+export function Divider({ color }: { color: "orange" | "blue" }) {
   const via = color === "orange" ? "via-cijug-orange/40" : "via-cijug-blue/50"
   return <div aria-hidden className={`container h-px bg-linear-to-r/oklab from-transparent ${via} to-transparent`} />
 }

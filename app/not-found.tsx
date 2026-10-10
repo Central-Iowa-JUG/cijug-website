@@ -6,6 +6,9 @@ import { MEETUP_URL, SESSIONIZE_URL } from "../lib/site"
 export const metadata: Metadata = {
   title: "404 · ClassNotFoundException",
   robots: { index: false },
+  // Without these, a pasted broken link would claim to be (and preview as) the home page.
+  alternates: { canonical: null },
+  openGraph: { url: null },
 }
 
 const frames = [

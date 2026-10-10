@@ -37,8 +37,6 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }
     ],
     apple: "/apple-icon.png",
   },
@@ -56,7 +54,7 @@ const organization = {
   email: EMAIL,
   description: SITE_DESCRIPTION,
   areaServed: "Central Iowa",
-  sameAs: [MEETUP_URL, ...socials.filter((s) => s.url !== MEETUP_URL).map((s) => s.url)],
+  sameAs: [MEETUP_URL, ...socials.map((s) => s.url)],
 };
 
 export default function RootLayout({
@@ -69,7 +67,7 @@ export default function RootLayout({
     <head>
       <meta
           httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';"
+          content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self';"
       />
     </head>
     <body>

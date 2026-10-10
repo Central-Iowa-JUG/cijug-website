@@ -14,13 +14,13 @@ const comment = "text-gray-400"
 // A token can link somewhere and show a Javadoc-style tooltip on hover. The code is aria-hidden decoration,
 // so these links are mouse shortcuts only (tabIndex -1); the page's real buttons go to the same places.
 type Token = { text: string; className?: string; href?: string; tip?: string }
-const t = (text: string, className?: string, link?: { href?: string; tip: string }): Token => ({ text, className, ...link })
+const t = (text: string, className?: string, link?: { href: string; tip: string }): Token => ({ text, className, ...link })
 
 // Every line stays at or under 34 characters so the window fits a 320px phone without wrapping.
 const lines: Token[][] = [
   [t("var", kw), t(" cijug = "), t("UserGroup", type, { href: "#about", tip: "About CIJUG" }), t("."), t("of", fn), t("("), t('"CIJUG"', str), t(");")],
   [],
-  [t("cijug."), t("meet", fn), t("("), t("Cadence", type), t("."), t("MONTHLY", constant, { tip: "Monthly, in Central Iowa" }), t(");")],
+  [t("cijug."), t("meet", fn), t("("), t("Cadence", type), t("."), t("MONTHLY", constant), t(");")],
   [t("cijug."), t("talkAbout", fn, { href: "#speak", tip: "Got a talk? Submit it" }), t("(")],
   [t("    "), t('"Java"', str), t(",")],
   [t("    "), t('"JVM"', str), t(",")],
@@ -43,23 +43,18 @@ const output: Output[] = [
 ]
 
 function CodeToken({ token }: { token: Token }) {
-  if (!token.tip) return <span className={token.className}>{token.text}</span>
+  if (!token.href) return <span className={token.className}>{token.text}</span>
   const external = token.href?.startsWith("http")
-  const body = token.href ? (
-    <a
-      href={token.href}
-      tabIndex={-1}
-      className={`${token.className} underline decoration-current/0 underline-offset-4 transition-colors hover:decoration-current/70`}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-    >
-      {token.text}
-    </a>
-  ) : (
-    <span className={`${token.className} cursor-help underline decoration-dotted decoration-current/40 underline-offset-4`}>{token.text}</span>
-  )
   return (
     <span className="group/tip relative">
-      {body}
+      <a
+        href={token.href}
+        tabIndex={-1}
+        className={`${token.className} underline decoration-current/0 underline-offset-4 transition-colors hover:decoration-current/70`}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
+        {token.text}
+      </a>
       <span className="pointer-events-none absolute bottom-full left-0 z-10 mb-1.5 rounded-md border border-white/10 bg-[#1e1f22] px-2 py-1 font-sans text-xs whitespace-nowrap text-gray-200 opacity-0 shadow-lg transition-opacity group-hover/tip:opacity-100">
         {token.tip}
       </span>
@@ -82,11 +77,12 @@ export function CodeWindow() {
   function run() {
     timers.current.forEach(clearTimeout)
     timers.current = []
+    setShown(0)
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setShown(output.length)
+      // Reset first, then show everything on the next tick, so a second Run still changes the output.
+      timers.current.push(setTimeout(() => setShown(output.length), 50))
       return
     }
-    setShown(0)
     output.forEach((_, i) => timers.current.push(setTimeout(() => setShown(i + 1), 150 + i * 280)))
   }
 

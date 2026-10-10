@@ -1,7 +1,5 @@
 @import 'tailwindcss';
 
-@source '../*.{js,ts,jsx,tsx,mdx}';
-
 @theme {
   --color-cijug-orange: #e56827;
   --color-cijug-blue: #2186b1;
