@@ -219,6 +219,15 @@ export default function Component() {
                   </Link>
                 ))}
               </div>
+              <Link
+                href="https://dsmtechevents.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm text-gray-300 transition-colors hover:text-cijug-blue"
+              >
+                Find more Des Moines tech meetups and conferences
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </Link>
             </div>
           </div>
         </section>
